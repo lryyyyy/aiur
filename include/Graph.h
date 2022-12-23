@@ -12,7 +12,7 @@ public:
     ~Graph(){};
 
     void PrintGraph();
-
+    void Parser();
     void TopoSort();
 
 private:

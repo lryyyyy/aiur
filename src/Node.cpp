@@ -17,6 +17,11 @@ void Node::PrintNode()
     std::cout << name_ << std::endl;
 }
 
+void Node::Parser()
+{
+    std::cout << name_ << std::endl;
+}
+
 std::string Node::GetName()
 {
     return name_;
