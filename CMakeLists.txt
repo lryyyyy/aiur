@@ -11,10 +11,12 @@ link_directories(${CMAKE_SOURCE_DIR}/3rdparty/protobuf-3.11.0/src/.libs)
 # 设置include头文件路径
 include_directories(${CMAKE_SOURCE_DIR}/proto)
 include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/src/parser)
 
 file(GLOB SRC
         ${CMAKE_SOURCE_DIR}/proto/*.cc
         ${CMAKE_SOURCE_DIR}/src/*.cpp
+        ${CMAKE_SOURCE_DIR}/src/parser/*.cpp
         )
 
 add_library(aiur SHARED ${SRC})

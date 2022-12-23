@@ -10,11 +10,9 @@ public:
     ~Node(){};
 
     void PrintNode();
-
+    virtual void Parser();
     std::string GetName();
-
     std::vector<std::string> GetInputs();
-
     std::vector<std::string> GetOutputs();
 
 private:

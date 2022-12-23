@@ -1,11 +1,13 @@
 #include "Graph.h"
 #include <algorithm>
+#include "NodeParser.h"
 
 namespace Aiur {
 Graph::Graph(onnx::GraphProto graph)
 {
     for (int i = 0; i < graph.node_size(); i++) {
-        NodePtr node = std::make_shared<Node>(graph.node(i));
+        auto creator = NodeParserRegistrar::GetCreator(graph.node(i).op_type());
+        auto node = creator(graph.node(i));
         node_list_.push_back(node);
     }
     for (int i = 0; i < graph.initializer_size(); i++) {
@@ -20,6 +22,13 @@ void Graph::PrintGraph()
 {
     for (auto it : node_list_) {
         it->PrintNode();
+    }
+}
+
+void Graph::Parser()
+{
+    for (auto it : node_list_) {
+        it->Parser();
     }
 }
 
@@ -51,8 +60,5 @@ void Graph::TopoSort()
         }
     }
     node_list_ = temp;
-    for (auto it : node_list_) {
-        std::cout << it->GetName() << std::endl;
-    }
 }
 } // namespace Aiur
